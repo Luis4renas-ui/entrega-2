@@ -7,6 +7,14 @@ interface ProductCardProps {
   emoji: string;
   price: string;
   rating: number;
+  addToCart: (product: {
+    id: number;
+    name: string;
+    description: string;
+    emoji: string;
+    price: string;
+    rating: number;
+  }) => void;
 }
 
 export default function ProductCard({
@@ -16,6 +24,7 @@ export default function ProductCard({
   emoji,
   price,
   rating,
+  addToCart,
 }: ProductCardProps) {
   return (
     <div className="group bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-2 border border-gold-100">
@@ -48,7 +57,10 @@ export default function ProductCard({
         {/* Price and Button */}
         <div className="flex items-center justify-between">
           <span className="text-2xl font-bold text-gold-600">{price}</span>
-          <button className="btn-primary flex items-center gap-2 !px-4 !py-2">
+          <button
+            onClick={() => addToCart({ id, name, description, emoji, price, rating })}
+            className="btn-primary flex items-center gap-2 !px-4 !py-2"
+          >
             <ShoppingCart size={18} />
             <span className="hidden sm:inline">Ordenar</span>
           </button>

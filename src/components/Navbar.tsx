@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 
-export default function Navbar() {
+interface NavbarProps {
+  cartCount: number;
+}
+
+export default function Navbar({ cartCount }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
@@ -29,7 +33,7 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex items-center space-x-8">
             <button
               onClick={() => scrollToSection('home')}
               className="text-gray-700 hover:text-gold-600 font-medium transition"
@@ -54,6 +58,9 @@ export default function Navbar() {
             >
               Contacto
             </button>
+            <div className="text-sm font-semibold text-gray-700 bg-gold-50 rounded-full px-3 py-1 border border-gold-100">
+              Carrito: {cartCount}
+            </div>
           </div>
 
           {/* Mobile Menu Button */}

@@ -1,6 +1,15 @@
 import ProductCard from './ProductCard';
 
-const products = [
+interface Product {
+  id: number;
+  name: string;
+  description: string;
+  emoji: string;
+  price: string;
+  rating: number;
+}
+
+const products: Product[] = [
   {
     id: 1,
     name: 'Arepa de Carne',
@@ -51,7 +60,11 @@ const products = [
   },
 ];
 
-export default function Products() {
+interface ProductsProps {
+  addToCart: (product: Product) => void;
+}
+
+export default function Products({ addToCart }: ProductsProps) {
   return (
     <section id="menu" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -67,7 +80,7 @@ export default function Products() {
         {/* Products Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {products.map((product) => (
-            <ProductCard key={product.id} {...product} />
+            <ProductCard key={product.id} {...product} addToCart={addToCart} />
           ))}
         </div>
 
