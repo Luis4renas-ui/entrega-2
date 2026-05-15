@@ -12,3 +12,6 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+console.log('Firebase inicializado:', app.name, analytics ? 'Analytics activo' : 'Analytics no disponible');
+
+export { app, analytics };
